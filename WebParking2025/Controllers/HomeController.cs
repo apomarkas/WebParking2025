@@ -12,9 +12,12 @@ namespace WebParking2025.Controllers
         {
             _logger = logger;
         }
-
-        public IActionResult Index()
+        public IActionResult Parking()
         {
+            return View();
+        }
+        public IActionResult Index()
+        {   
             return View();
         }
 
