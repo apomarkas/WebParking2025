@@ -1,19 +1,33 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome to our Parking!</h1>
-    <p>Parking 1</p>
-    <a class="btn btn-primary" role="button" asp-controller="Home" asp-action="Parking">
-        Info1
-    </a>
-    <p>Parking 2</p>
-    <a class="btn btn-primary" role="button" asp-controller="Home" asp-action="Parking">
-        Info2
-    </a>
-    <p>Parking 3</p>
-    <a class="btn btn-primary" role="button" asp-controller="Home" asp-action="Parking">
-        Info3
-    </a>
+<div class="container mt-4">
+    <div class="row align-items-center">
+        <div class="col-md-6 text-center">
+            <h1 class="display-4">Welcome to our Parking!</h1>
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="~/images/parking.jpg" alt="Parking Area" class="img-fluid rounded">
+        </div>
+    </div>
 </div>
+ <div class="container mt-5">
+    <div class="row text-center">
+        <div class="col-md-4">
+            <img src="~/images/parking1.jpg" alt="Parking 1" class="img-fluid rounded">
+            <p>Parking 1</p>
+            <a class="custom-btn btn-parking1" role="button" asp-controller="Home" asp-action="Parking">Info 1</a>
+        </div>
+        <div class="col-md-4">
+            <img src="~/images/parking2.jpg" alt="Parking 2" class="img-fluid rounded">
+            <p>Parking 2</p>
+            <a class="custom-btn btn-parking2" role="button" asp-controller="Home" asp-action="Parking">Info 2</a>
+        </div>
+        <div class="col-md-4">
+            <img src="~/images/parking3.jpg" alt="Parking 3" class="img-fluid rounded">
+            <p>Parking 3</p>
+            <a class="custom-btn btn-parking3" role="button" asp-controller="Home" asp-action="Parking">Info 3</a>
+        </div>
+    </div>
+</div>
+

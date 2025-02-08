@@ -20,3 +20,30 @@ html {
 body {
   margin-bottom: 60px;
 }
+.custom-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.btn-parking1 {
+    background: linear-gradient(135deg, #007bff, #6610f2);
+}
+
+.btn-parking2 {
+    background: linear-gradient(135deg, #28a745, #218838);
+}
+
+.btn-parking3 {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+}
+
+.custom-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
