@@ -16,17 +16,17 @@
         <div class="col-md-4">
             <img src="~/images/parking1.jpg" alt="Parking 1" class="img-fluid rounded">
             <p>Parking 1</p>
-            <a class="custom-btn btn-parking1" role="button" asp-controller="Home" asp-action="Parking">Info 1</a>
+            <button class="btn-black" onclick="location.href='@Url.Action("Info", "ParkingsInfo",new { id = 1})'">Info1</button>
         </div>
         <div class="col-md-4">
             <img src="~/images/parking2.jpg" alt="Parking 2" class="img-fluid rounded">
             <p>Parking 2</p>
-            <a class="custom-btn btn-parking2" role="button" asp-controller="Home" asp-action="Parking">Info 2</a>
+            <button class="btn-black" onclick="location.href='@Url.Action("Info", "ParkingsInfo",new { id = 2})'">Info2</button>
         </div>
         <div class="col-md-4">
             <img src="~/images/parking3.jpg" alt="Parking 3" class="img-fluid rounded">
             <p>Parking 3</p>
-            <a class="custom-btn btn-parking3" role="button" asp-controller="Home" asp-action="Parking">Info 3</a>
+            <<button class="btn-black" onclick="location.href='@Url.Action("Info", "ParkingsInfo",new { id = 3})'">Info2</button>
         </div>
     </div>
 </div>

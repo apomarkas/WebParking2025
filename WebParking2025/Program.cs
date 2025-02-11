@@ -1,7 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using WebParking2025.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+//Add db context
+builder.Services.AddDbContext<ParkingContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
 
 var app = builder.Build();
 
