@@ -5,12 +5,30 @@
     var name = Model.Name;
     var desc = Model.Description;
     var capacity = Model.MaxCapacity;
+    var image = new Dictionary<string, string>
+    {
+        { "Aristotelous", "/images/ParkingAristotelous.jpg" },
+        { "Omonoia", "/images/ParkingOmonoia.jpg" },
+        { "Volos", "/images/ParkingVolos.jpg" }
+    };
+    var imageUrl = image.ContainsKey(Model.Name) ? image[Model.Name] : "/images/default.jpg";
+    var address = "test";
+    var phone = "3333";
 }
-
-<h1>Parking info!!!</h1>
-
-<div>Parking name:@name</div>
-<div>Parking name:@desc</div>
-<div>Parking name:@capacity</div>
-
-
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg">
+                <img src="@imageUrl" class="card-img-top img-fluid large-img rounded-top" alt="Parking Image">
+                <div class="card-body text-center">
+                    <h2 class="card-title text-primary">@Model.Name</h2>
+                    <p class="card-text text-dark"><strong>Description:</strong> @Model.Description</p>
+                    <p class="card-text"><strong>Capacity:</strong> @Model.MaxCapacity cars</p>
+                    <p class="card-text"><strong>Address:</strong> @address</p>
+                    <p class="card-text"><strong>Phone:</strong> @phone</p>
+                    <a href="/" class="btn btn-primary mt-3">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
