@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebParking2025.Data;
 
@@ -11,9 +12,11 @@ using WebParking2025.Data;
 namespace WebParking2025.Migrations
 {
     [DbContext(typeof(ParkingContext))]
-    partial class ParkingContextModelSnapshot : ModelSnapshot
+    [Migration("20250213202525_Identity table first migration")]
+    partial class Identitytablefirstmigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -226,35 +229,6 @@ namespace WebParking2025.Migrations
                     b.ToTable("Places");
                 });
 
-            modelBuilder.Entity("WebParking2025.Models.Reservation", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("reservation_id");
-
-                    b.Property<int>("PlaceId")
-                        .HasColumnType("int")
-                        .HasColumnName("place_id");
-
-                    b.Property<DateTime>("ReservationDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("reservation_date");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)")
-                        .HasColumnName("user_id");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PlaceId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Reservation");
-                });
-
             modelBuilder.Entity("WebParking2025.Models.User", b =>
                 {
                     b.Property<string>("Id")
@@ -273,16 +247,6 @@ namespace WebParking2025.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("first_name");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("last_name");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -392,38 +356,9 @@ namespace WebParking2025.Migrations
                     b.Navigation("Parking");
                 });
 
-            modelBuilder.Entity("WebParking2025.Models.Reservation", b =>
-                {
-                    b.HasOne("WebParking2025.Models.Place", "Place")
-                        .WithMany("Reservations")
-                        .HasForeignKey("PlaceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WebParking2025.Models.User", "User")
-                        .WithMany("Reservations")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Place");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("WebParking2025.Models.Parking", b =>
                 {
                     b.Navigation("Places");
-                });
-
-            modelBuilder.Entity("WebParking2025.Models.Place", b =>
-                {
-                    b.Navigation("Reservations");
-                });
-
-            modelBuilder.Entity("WebParking2025.Models.User", b =>
-                {
-                    b.Navigation("Reservations");
                 });
 #pragma warning restore 612, 618
         }

@@ -18,6 +18,16 @@ namespace WebParking2025.Models
 
         [Column("max_capacity")]
         public int MaxCapacity { get; set; }
+
+        [Column("address")]
+        public string Address { get; set; }
+
+        [Column("phone")]
+        public string Phone { get; set; }
+
+
+        [InverseProperty(nameof(Place.Parking))]
+        public virtual ICollection<Place> Places { get; set; }
     }
 
 }

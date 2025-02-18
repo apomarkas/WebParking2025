@@ -5,15 +5,16 @@
     var name = Model.Name;
     var desc = Model.Description;
     var capacity = Model.MaxCapacity;
+    var id = Model.Id;
     var image = new Dictionary<string, string>
     {
-        { "Aristotelous", "/images/ParkingAristotelous.jpg" },
+        { "Aristotelous","/images/ParkingAristotelous.jpg" },
         { "Omonoia", "/images/ParkingOmonoia.jpg" },
         { "Volos", "/images/ParkingVolos.jpg" }
     };
     var imageUrl = image.ContainsKey(Model.Name) ? image[Model.Name] : "/images/default.jpg";
-    var address = "test";
-    var phone = "3333";
+    var address = Model.Address;
+    var phone = Model.Phone;
 }
 <div class="container mt-4">
     <div class="row justify-content-center">
@@ -21,11 +22,12 @@
             <div class="card shadow-lg">
                 <img src="@imageUrl" class="card-img-top img-fluid large-img rounded-top" alt="Parking Image">
                 <div class="card-body text-center">
-                    <h2 class="card-title text-primary">@Model.Name</h2>
-                    <p class="card-text text-dark"><strong>Description:</strong> @Model.Description</p>
-                    <p class="card-text"><strong>Capacity:</strong> @Model.MaxCapacity cars</p>
+                    <h2 class="card-title text-primary">@name</h2>
+                    <p class="card-text text-dark"><strong>Description:</strong> @desc</p>
+                    <p class="card-text"><strong>Capacity:</strong> @capacity</p>
                     <p class="card-text"><strong>Address:</strong> @address</p>
                     <p class="card-text"><strong>Phone:</strong> @phone</p>
+                    <a href="@Url.Action("Reservation", "ParkingsInfo",new { id = id})" class="btn btn-primary mt-3">Make Reservation</a>
                     <a href="/" class="btn btn-primary mt-3">Back to Home</a>
                 </div>
             </div>

@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using WebParking2025.Data;
+using Microsoft.AspNetCore.Identity;
+using WebParking2025.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +9,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 //Add db context
 builder.Services.AddDbContext<ParkingContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
-
+builder.Services.AddAuthentication()
+   .AddGoogle(options =>
+   {
+       //IConfigurationSection googleAuthNSection =
+       //config.GetSection("Authentication:Google");
+       options.ClientId = "215654243479-vu2q0gknsgesi4d6aupurrtpce61c7ck.apps.googleusercontent.com";
+       options.ClientSecret = "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";
+   });
+builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ParkingContext>();
+builder.Services.AddRazorPages();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -29,4 +40,5 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+app.MapRazorPages();
 app.Run();

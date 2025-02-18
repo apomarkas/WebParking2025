@@ -1,0 +1,11 @@
+﻿@model WebParking2025.Models.Parking
+
+@{
+    ViewData["Title"] = "Parking Info";
+    var name = Model.Name;
+    var desc = Model.Description;
+    var capacity = Model.MaxCapacity;
+}
+
+
+<div>This is reservation page for parking @Model.Id!</div>
