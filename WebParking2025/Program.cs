@@ -14,8 +14,9 @@ builder.Services.AddAuthentication()
    {
        //IConfigurationSection googleAuthNSection =
        //config.GetSection("Authentication:Google");
-       options.ClientId = "215654243479-vu2q0gknsgesi4d6aupurrtpce61c7ck.apps.googleusercontent.com";
-       options.ClientSecret = "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";
+       //TODO: CONFIGURE
+       options.ClientId = "";
+       options.ClientSecret = "";
    });
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ParkingContext>();
 builder.Services.AddRazorPages();
