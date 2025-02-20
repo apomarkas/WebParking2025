@@ -6,6 +6,83 @@
     var desc = Model.Description;
     var capacity = Model.MaxCapacity;
 }
+@{
+    ViewData["Title"] = "Make a Reservation";
+}
 
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg p-4">
+                <h3 class="text-center text-primary mb-4">Make a Reservation</h3>
 
-<div>This is reservation page for parking @Model.Id!</div>
+                <form id="reservationForm">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="firstName" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="firstName" placeholder="Enter your first name" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="lastName" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="lastName" placeholder="Enter your last name" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="phone" class="form-label">Phone</label>
+                            <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                        </div>
+                    </div>
+
+                    <h3 class="text-secondary mt-4">Vehicle Information</h3>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label for="plateNumber" class="form-label">License Plate</label>
+                            <input type="text" class="form-control" id="plateNumber" placeholder="Enter plate number" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="carBrand" class="form-label">Car Brand</label>
+                            <input type="text" class="form-control" id="carBrand" placeholder="Enter car brand" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="carColor" class="form-label">Car Color</label>
+                            <input type="text" class="form-control" id="carColor" placeholder="Enter car color" required>
+                        </div>
+                    </div>
+
+                    <h3 class="text-secondary mt-4">Select Date, Time & Parking Spot</h3>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label for="reservationDate" class="form-label">Date</label>
+                            <input type="date" class="form-control" id="reservationDate" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="reservationTime" class="form-label">Time</label>
+                            <input type="time" class="form-control" id="reservationTime" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="parkingSpot" class="form-label">Parking Spot</label>
+                            <select id="parkingSpot" name="parkingSpot" class="form-control" required>
+                                <option value="" disabled selected>Select a Spot</option>
+                                @for (int i = 1; i <= 10; i++)
+                                {
+                                    <option value="@i">Spot @i</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-success">Make Reservation</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
