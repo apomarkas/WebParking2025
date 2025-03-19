@@ -22,8 +22,20 @@ namespace WebParking2025.Models
         [InverseProperty(nameof(Place.Reservations))]
         public virtual Place Place { get; set; }
         
-        [Column("reservation_date")]
-        public DateTime ReservationDate { get; set; }
+        [Column("reservation_start")]
+        public DateTime ReservationStart { get; set; }
+
+        [Column("reservation_stop")]
+        public DateTime ReservationEnd { get; set;}
+
+        [Column("brand")]
+        public string Brand { get; set; }
+
+        [Column("license_plate")]
+        public string Plate {  get; set; }
+
+        [Column("car_color")]
+        public string CarColor {  get; set; } 
 
 
 

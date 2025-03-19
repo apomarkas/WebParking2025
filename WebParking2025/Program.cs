@@ -17,7 +17,12 @@ builder.Services.AddAuthentication()
        options.ClientId = "215654243479-vu2q0gknsgesi4d6aupurrtpce61c7ck.apps.googleusercontent.com";
        options.ClientSecret = "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";
    });
-builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ParkingContext>();
+//Identity items
+builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<ParkingContext>();
+    
+
 builder.Services.AddRazorPages();
 var app = builder.Build();
 

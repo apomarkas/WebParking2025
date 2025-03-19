@@ -25,6 +25,9 @@ namespace WebParking2025.Models
         [InverseProperty(nameof(Reservation.Place))]
         public ICollection<Reservation> Reservations { get; set; }
 
+        [Column("price")]
+        public double Price { get; set; }
+
     }
 
     public enum State

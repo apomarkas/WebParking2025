@@ -11,7 +11,7 @@ namespace WebParking2025.Controllers
     {
         private readonly ParkingContext _context;
         private readonly SignInManager<User> _signInManager;
-        private readonly UserManager<User> _userManager;
+        
 
         public ParkingsInfoController(ParkingContext context, SignInManager<User> signInManager)
         {
@@ -20,7 +20,7 @@ namespace WebParking2025.Controllers
             
         }
         // GET: ParkingsInfo/Details/5
-
+        
         public async Task<IActionResult> Info(int? id)
         {
             if (id == null)
