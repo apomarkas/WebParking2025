@@ -3,7 +3,19 @@
 @{
     
 }
-
+<td class="text-end">
+    <div class="d-flex justify-content-end align-items-center gap-2">
+        <select class="form-select form-select-sm w-auto">
+            <option value="user">user</option>
+            <option value="admin">admin</option>
+        </select>
+        <button class="btn btn-sm btn-outline-primary">Save</button>
+    </div>
+</td>
+            </tr>
+        
+    </tbody>
+</table>
 @if (Model.Any())
 {
     foreach (var user in Model)

@@ -6,68 +6,55 @@
     var desc = Model.Description;
     var capacity = Model.MaxCapacity;
 }
-@{
-    ViewData["Title"] = "Make a Reservation";
-}
-
 <div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+    <div class="row">
+        <div class="col-lg-7 col-md-12 mb-4">
             <div class="card shadow-lg p-4">
                 <h3 class="text-center text-primary mb-4">Make a Reservation</h3>
 
-                <form id="reservationForm" asp-controller="Reservation" asp-action="CompleteReservation" asp-route-id=@Model.Id method="post">
+                <form id="reservationForm">
+                    <h5 class="text-secondary">Vehicle Information</h5>
                     <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="firstName" class="form-label">First Name</label>
-                            <input type="text" class="form-control" id="firstName" name="FirstName" placeholder=" Enter your first name" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="lastName" class="form-label">Last Name</label>
-                            <input type="text" class="form-control" id="lastName" name="LastName" placeholder="Enter your last name" required>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="phone" class="form-label">Phone</label>
-                            <input type="tel" class="form-control" id="phone" name="Phone" placeholder="Enter your phone number" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="Email" placeholder="Enter your email" required>
-                        </div>
-                    </div>
-
-                    <h3 class="text-secondary mt-4">Vehicle Information</h3>
-                    <div class="row">
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-4 mb-3"
                             <label for="plateNumber" class="form-label">License Plate</label>
-                            <input type="text" class="form-control" id="plateNumber" name="LicensePlate" placeholder="Enter plate number" required>
+                            <input type="text" class="form-control" id="plateNumber" required>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="carBrand" class="form-label">Car Brand</label>
-                            <input type="text" class="form-control" id="carBrand" name="CarBrand" placeholder="Enter car brand" required>
+                            <input type="text" class="form-control" id="carBrand" required>
                         </div>
                         <div class="col-md-4 mb-3">
                             <label for="carColor" class="form-label">Car Color</label>
-                            <input type="text" class="form-control" id="carColor" name="CarColor" placeholder="Enter car color" required>
+                            <input type="text" class="form-control" id="carColor" required>
                         </div>
                     </div>
 
-                    <h3 class="text-secondary mt-4">Select Date, Time & Parking Spot</h3>
+                    <h5 class="text-secondary mt-4">Select Date, Time, Duration & Parking Spot</h5>
                     <div class="row">
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-3 mb-3">
                             <label for="reservationDate" class="form-label">Date</label>
-                            <input type="date" class="form-control" id="reservationDate" name="ReservationDate" required>
+                            <input type="date" class="form-control" id="reservationDate" required>
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-3 mb-3">
                             <label for="reservationTime" class="form-label">Time</label>
-                            <input type="time" class="form-control" id="reservationTime" name="ReservationTime" required>
+                            <input type="time" class="form-control" id="reservationTime" required>
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-3 mb-3">
+                            <label for="duration" class="form-label">Duration</label>
+                            <select id="duration" class="form-control" required>
+                                <option value="" disabled selected>Select Duration</option>
+                                @{
+                                    var durations = new[] { 1, 2, 3, 4, 6, 8, 12 };
+                                }
+                                @foreach (var d in durations)
+                                {
+                                    <option value="@d">@d ώρες</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-3 mb-3">
                             <label for="parkingSpot" class="form-label">Parking Spot</label>
-                            <select id="parkingSpot" name="ParkingSpot" class="form-control" required>
+                            <select id="parkingSpot" name="parkingSpot" class="form-control" required>
                                 <option value="" disabled selected>Select a Spot</option>
                                 @for (int i = 1; i <= 10; i++)
                                 {
@@ -76,13 +63,36 @@
                             </select>
                         </div>
                     </div>
-
                     <div class="text-center mt-4">
                         <button type="submit" class="btn btn-success">Make Reservation</button>
                     </div>
                 </form>
             </div>
         </div>
+        <div class="col-lg-5 col-md-12">
+            <div class="card shadow-lg p-4">
+                <h3 class="text-center text-primary mb-3">Available Parking Spots</h3>
+                <div class="mb-3 text-center">
+                    <label for="availabilityDate" class="form-label"><strong>Select Date to View Availability:</strong></label>
+                    <input type="date" class="form-control w-50 mx-auto" id="availabilityDate" />
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center">
+                        <tbody>
+                            @for (int row = 0; row < 2; row++)
+                            {
+                                <tr>
+                                    @for (int col = 1; col <= 5; col++)
+                                    {
+                                        int spotNumber = row * 5 + col;
+                                        <td class="available-spot">Spot @spotNumber</td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
