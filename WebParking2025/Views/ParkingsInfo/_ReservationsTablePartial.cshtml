@@ -1,0 +1,28 @@
+﻿@model List<Reservation>
+
+<div class="container my-4">
+    <h3 class="mb-4 text-center">Reservation Catalog</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered text-center align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Spot</th>
+                    <th>From</th>
+                    <th>To</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var spot in Model)
+                {
+                                         
+                            <tr>
+                                <td>@spot.Place.Name</td>
+                                <td>@spot.ReservationStart.ToString("HH:mm")</td>
+                                <td>@spot.ReservationEnd.ToString("HH:mm")</td>
+                            </tr>
+                                          
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

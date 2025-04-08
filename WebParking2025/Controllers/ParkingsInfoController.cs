@@ -18,8 +18,7 @@ namespace WebParking2025.Controllers
             _context = context;
             _signInManager = signInManager;
             
-        }
-        // GET: ParkingsInfo/Details/5
+        }      
         
         public async Task<IActionResult> Info(int? id)
         {
@@ -47,7 +46,8 @@ namespace WebParking2025.Controllers
             }
 
             var parking = await _context.Parkings
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .Include(p => p.Places)
+                .FirstOrDefaultAsync(m => m.Id == id);         
             if (parking == null)
             {
                 return NotFound();
@@ -62,6 +62,17 @@ namespace WebParking2025.Controllers
             {
                 return Redirect("/Login");
             }
+        }
+
+        public async Task<IActionResult> CheckAvailability(string givenDate)
+        {   var date = DateTime.Parse(givenDate);
+            //get reservations for selected date
+            var reservations = _context.Reservation
+
+                .Where(r => r.ReservationStart.Date == date)
+                .Include(p =>p.Place)
+                .ToList();
+            return PartialView("_ReservationsTablePartial",reservations);
         }
 
 

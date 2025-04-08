@@ -1,4 +1,6 @@
-﻿namespace WebParking2025.ViewModels
+﻿using WebParking2025.Models;
+
+namespace WebParking2025.ViewModels
 {
     public class ReservationView
     {
@@ -12,6 +14,7 @@
         public string ParkingSpot { get; set; }
         public string ReservationDate { get; set; }
         public string ReservationTime { get; set; }
+        public string Duration { get; set; }
 
 
     }

@@ -13,5 +13,7 @@ namespace WebParking2025.Data
 
         public DbSet<Place> Places { get; set; }
 
+        public DbSet<Reservation> Reservation { get; set; }
+
     }
 }
