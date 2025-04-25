@@ -35,7 +35,10 @@ namespace WebParking2025.Models
         public string Plate {  get; set; }
 
         [Column("car_color")]
-        public string CarColor {  get; set; } 
+        public string CarColor {  get; set; }
+
+        [Column("completed")]
+        public bool Completed { get; set; }
 
 
 

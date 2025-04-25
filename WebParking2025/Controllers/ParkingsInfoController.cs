@@ -64,12 +64,12 @@ namespace WebParking2025.Controllers
             }
         }
 
-        public async Task<IActionResult> CheckAvailability(string givenDate)
+        public async Task<IActionResult> CheckAvailability(string givenDate,int id)
         {   var date = DateTime.Parse(givenDate);
             //get reservations for selected date
             var reservations = _context.Reservation
 
-                .Where(r => r.ReservationStart.Date == date)
+                .Where(r => r.ReservationStart.Date == date && r.Place.ParkingId== id)
                 .Include(p =>p.Place)
                 .ToList();
             return PartialView("_ReservationsTablePartial",reservations);

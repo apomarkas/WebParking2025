@@ -2,31 +2,59 @@
 
 @{
     
+    var existingRoles = new List<string> { "Admin","User"};
 }
-<td class="text-end">
-    <div class="d-flex justify-content-end align-items-center gap-2">
-        <select class="form-select form-select-sm w-auto">
-            <option value="user">user</option>
-            <option value="admin">admin</option>
-        </select>
-        <button class="btn btn-sm btn-outline-primary">Save</button>
-    </div>
-</td>
+
+<h2>Manage User Roles</h2>
+
+
+<form asp-action="UpdateRoles" method="post">
+    <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+            <tr style="background-color: #f0f0f0;">
+                <th style="padding: 8px; border-bottom: 1px solid #ccc;">First Name</th>
+                <th style="padding: 8px; border-bottom: 1px solid #ccc;">Last Name</th>
+                <th style="padding: 8px; border-bottom: 1px solid #ccc;">Email</th>
+                <th style="padding: 8px; border-bottom: 1px solid #ccc;">Role</th>
             </tr>
-        
-    </tbody>
-</table>
-@if (Model.Any())
-{
-    foreach (var user in Model)
-    {
-        <div class="card mb-3">
-            <div class="card-header">
-                User name : @user.Key.UserName
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">@user.Value</h5>
-            </div>            
-        </div>
-    }
-}
+        </thead>
+        <tbody>
+            @{
+                var index = 0;
+            }
+            @foreach (var kvp in Model)
+            {
+                var user = kvp.Key;
+                var userRole = kvp.Value;
+                <tr>
+                   <td style="padding: 8px;">@user.FirstName</td>
+                   <td style="padding: 8px;">@user.LastName</td>
+                   <td style="padding: 8px;">@user.Email</td>
+                   <td style="padding: 8px;">
+                   <input type="hidden" name="Info[@index].UserId" value="@user.Id" />
+                        <select name="Info[@index].Role">
+                            @foreach (var role in existingRoles)
+                              {
+                                    if (role == userRole)
+                                    {
+                                        <option value="@role" selected>@role</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@role">@role</option>                                        
+                                    }
+                              }
+                        </select>                                   
+                    </td>
+                </tr>
+                index++;
+            }         
+        </tbody>
+    </table>
+
+    <br />
+
+    <button type="submit" style="padding: 10px 16px; background-color: #007bff; color: white; border: none; border-radius: 4px;">
+        Save Changes
+    </button>
+</form>

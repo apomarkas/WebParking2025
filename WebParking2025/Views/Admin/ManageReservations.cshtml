@@ -1,0 +1,84 @@
+﻿@model List<Reservation>
+
+<h2>Reservation List</h2>
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    td input {
+        
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .form-control {
+        padding: 6px;
+        font-size: 1rem;
+        width: 100%;
+        
+    }
+</style>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Email</th>           
+            <th>Car Brand</th>
+            <th>Car Colour</th>
+            <th>License Plate</th>
+            <th>Spot</th>
+            <th>Date</th>
+            <th>From</th>
+            <th>To</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var reservation in Model)
+        {
+            
+                <tr>
+                    <form method="post" action="/Admin/EditReservation">
+                    <td style="padding: 6px 8px;">
+                        <span style="display: block; padding: 6px;">@reservation.User.Email</span>
+                    </td>
+                    <td>
+                        <input type="text" name="CarBrand" value="@reservation.Brand" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="Colour" value="@reservation.CarColor" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="text" name="Plate" value="@reservation.Plate" class="form-control" />
+                        </td>
+                    <td>
+                        <input type="text" name="Place" value="@reservation.Place.Name" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="date" name="Date" value=@reservation.ReservationStart.ToString("yyyy-MM-dd") class="form-control" />
+                    </td>
+                    <td>
+                        <input type="time" name="From" value="@reservation.ReservationStart.ToString("HH:mm")" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="time" name="To" value="@reservation.ReservationEnd.ToString("HH:mm")" class="form-control" />
+                    </td>          
+                    <td>
+                        <input type="hidden" name="Id" value="@reservation.Id" />
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </td>
+                    </form>
+                    <td style="white-space: nowrap;">                       
+                        <form method="post" action="/Admin/DeleteReservation" style="display:inline;">
+                            <input type="hidden" name="Id" value="@reservation.Id" />
+                            <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this reservation?');" />
+                        </form>
+                    </td>
+            </tr>
+        
+        }
+    </tbody>
+</table>

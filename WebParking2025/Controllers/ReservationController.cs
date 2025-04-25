@@ -73,6 +73,25 @@ namespace WebParking2025.Controllers
 
             return View(reservation);
         }
+
+        public async Task<IActionResult> ConfirmReservation()
+        {   
+
+            return View();
+        }
+
+        public async Task<IActionResult> UserReservations(string Email)
+        {   
+            var user = await _userManager.FindByEmailAsync(Email);
+            var reservations = await _context.Reservation
+                
+                .Include(u => u.User)
+                .Include(p => p.Place)
+                .Where(u => u.User == user && u.Completed==false)
+                .ToListAsync();
+
+            return View(reservations);
+        }
         
         private bool isReserved(Place place,DateTime start,DateTime stop)
         {
@@ -88,7 +107,18 @@ namespace WebParking2025.Controllers
 
             return false;
         }
+        public async Task<IActionResult> UserConfirmReservation(Guid reservationId)
 
+        {   
+            var reservation = await _context.Reservation
+                .FindAsync(reservationId);
+
+            //Complete reservation
+            reservation.Completed = true;
+            await _context.SaveChangesAsync();
+
+            return View("UserReservationSuccess");
+        }
         private async Task SendEmail(Reservation reservation)
         {
             string smtpServer = "smtp.gmail.com";

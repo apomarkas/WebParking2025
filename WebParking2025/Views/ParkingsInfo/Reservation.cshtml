@@ -87,12 +87,13 @@
         <script>
             function checkAvailability() {
                 const date = document.getElementById("availabilityDate").value;
+                const id = @Model.Id;
 
                 if (!date) {
                     alert("Please select a date.");
                     return;
                 }
-                const url = '@Url.Action("CheckAvailability", "ParkingsInfo")?givenDate=' + date;
+                const url = '@Url.Action("CheckAvailability", "ParkingsInfo")?givenDate=' + date + '&id=' + id;
                 fetch(url)
                     .then(response => response.text())
                     .then(html => {
