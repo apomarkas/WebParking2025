@@ -71,11 +71,11 @@
         </div>
         <div class="col-lg-5 col-md-12">
             <div class="card shadow-lg p-4">
-                <h3 class="text-center text-primary mb-3">Available Parking Spots</h3>
+                <h3 class="text-center text-available-spots mb-3">Available Parking Spots</h3>
                 <div class="mb-3 text-center">
                     <label for="availabilityDate" class="form-label"><strong>Select Date to View Availability:</strong></label>
                     <input type="date" class="form-control w-50 mx-auto" id="availabilityDate" name="date" required/>                   
-                    <button type="button" class="btn btn-primary mt-2" onclick="checkAvailability()">Check Availability</button>
+                    <button type="button" class="btn btn-check-availability mt-2" onclick="checkAvailability()">Check Availability</button>
                 
             </div>
             <div id="availabilityTableContainer"></div>

@@ -1,7 +1,4 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
-<div class="container mt-4">
+﻿<div class="container mt-4">
     <div class="row align-items-center">
         <div class="col-md-6 text-center">
             <h1 class="display-4">Welcome to our Parking!</h1>
@@ -16,18 +13,19 @@
         <div class="col-md-4">
             <img src="~/images/parking1.jpg" alt="Parking 1" class="img-fluid rounded">
             <p>Parking 1</p>
-            <button class="btn-black" onclick="location.href='@Url.Action("Info", "ParkingsInfo",new { id = 1})'">Info1</button>
+            <button class="btn btn-outline-primary rounded-pill px-4" onclick="location.href='@Url.Action("Info", "ParkingsInfo",new { id = 1})'">Info1</button>
         </div>
         <div class="col-md-4">
             <img src="~/images/parking2.jpg" alt="Parking 2" class="img-fluid rounded">
             <p>Parking 2</p>
-            <button class="btn-black" onclick="location.href='@Url.Action("Info", "ParkingsInfo",new { id = 2})'">Info2</button>
+            <button class="btn btn-outline-primary rounded-pill px-4" onclick="location.href='@Url.Action("Info", "ParkingsInfo",new { id = 2})'">Info2</button>
         </div>
         <div class="col-md-4">
             <img src="~/images/parking3.jpg" alt="Parking 3" class="img-fluid rounded">
             <p>Parking 3</p>
-            <button class="btn-black" onclick="location.href='@Url.Action("Info", "ParkingsInfo",new { id = 3})'">Info3</button>
+            <button class="btn btn-outline-primary rounded-pill px-4" onclick="location.href='@Url.Action("Info", "ParkingsInfo",new { id = 3})'">Info3</button>
         </div>
     </div>
 </div>
+
 

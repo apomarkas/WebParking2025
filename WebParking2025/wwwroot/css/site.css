@@ -54,3 +54,26 @@ body {
     border-top-right-radius: 15px;
 }
 
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: #DCDCDC;
+    margin: 0;
+    padding: 0;
+}
+
+.btn-custom-reservation {
+    background-color: #E7F291;
+    color: black;
+    border: none;
+}
+.btn-check-availability {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+}
+.text-available-spots {
+    color: #79BF65;
+}
