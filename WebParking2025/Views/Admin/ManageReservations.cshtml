@@ -1,5 +1,7 @@
 ﻿@model List<Reservation>
-
+@{
+    ViewData["Title"] = "Reservations";
+}
 <h2>Reservation List</h2>
 
 <style>
@@ -29,6 +31,7 @@
             <th>Car Brand</th>
             <th>Car Colour</th>
             <th>License Plate</th>
+            <th>Parking</th>
             <th>Spot</th>
             <th>Date</th>
             <th>From</th>
@@ -53,7 +56,10 @@
                     </td>
                     <td>
                         <input type="text" name="Plate" value="@reservation.Plate" class="form-control" />
-                        </td>
+                    </td>
+                    <td style="padding: 6px 8px;">
+                        <span style="display: block; padding: 6px;">@reservation.Place.Parking.Name</span>
+                    </td>
                     <td>
                         <input type="text" name="Place" value="@reservation.Place.Name" class="form-control" />
                     </td>

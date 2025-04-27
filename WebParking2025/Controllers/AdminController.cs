@@ -51,6 +51,7 @@ namespace WebParking2025.Controllers
             var reservations = await _context.Reservation
                 .Include(u => u.User)
                 .Include(p =>p.Place)
+                .Include(par =>par.Place.Parking)
                 .Where(c=>c.Completed==false)
                 .ToListAsync();
 

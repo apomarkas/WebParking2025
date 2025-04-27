@@ -7,6 +7,7 @@ using WebParking2025.Data;
 using WebParking2025.Models;
 using WebParking2025.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using WebParking2025.DbModels;
 
 namespace WebParking2025.Controllers
 {
@@ -80,17 +81,26 @@ namespace WebParking2025.Controllers
             return View();
         }
 
-        public async Task<IActionResult> UserReservations(string Email)
+        public async Task<IActionResult> UserReservations(ReservationLogsView info)
         {   
-            var user = await _userManager.FindByEmailAsync(Email);
+            var user = await _userManager.FindByEmailAsync(info.Email);
             var reservations = await _context.Reservation
                 
                 .Include(u => u.User)
                 .Include(p => p.Place)
+                .Include(par=>par.Place.Parking)
                 .Where(u => u.User == user && u.Completed==false)
                 .ToListAsync();
 
-            return View(reservations);
+            using (var memoryStream = new MemoryStream())
+            {
+                info.Photo.CopyTo(memoryStream);
+                byte[] photoBytes = memoryStream.ToArray();
+                info.Base64Photo = Convert.ToBase64String(photoBytes);
+            }
+            info.Reservations = reservations;
+            
+            return View(info);
         }
         
         private bool isReserved(Place place,DateTime start,DateTime stop)
@@ -107,14 +117,25 @@ namespace WebParking2025.Controllers
 
             return false;
         }
-        public async Task<IActionResult> UserConfirmReservation(Guid reservationId)
+        public async Task<IActionResult> UserConfirmReservation(ConfirmationView info)
 
         {   
             var reservation = await _context.Reservation
-                .FindAsync(reservationId);
-
+                .FindAsync(info.ReservationId);
+            
             //Complete reservation
             reservation.Completed = true;
+
+            var log = new ReservationLogs
+            {
+                FirstName = info.FirstName,
+                LastName = info.LastName,
+                Phone = info.Phone,
+                Reservation = reservation,
+                User = await _userManager.FindByEmailAsync(info.Email),
+                Photo = Convert.FromBase64String(info.Photo)
+            };
+            _context.ReservationLogs.Add(log);
             await _context.SaveChangesAsync();
 
             return View("UserReservationSuccess");

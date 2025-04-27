@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using WebParking2025.DbModels;
 
 namespace WebParking2025.Models
 {
@@ -40,7 +41,8 @@ namespace WebParking2025.Models
         [Column("completed")]
         public bool Completed { get; set; }
 
-
+        [InverseProperty(nameof(ReservationLogs.Reservation))]
+        public virtual ICollection<ReservationLogs> Logs { get; set; }
 
 
     }

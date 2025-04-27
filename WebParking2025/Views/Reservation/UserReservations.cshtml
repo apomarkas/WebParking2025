@@ -1,11 +1,11 @@
-﻿@model List<Reservation>
-
+﻿
 <form asp-action="UserConfirmReservation" method="post">
 
     <table style="width: 100%; border-collapse: collapse;">
         <thead>
             <tr style="background-color: #f0f0f0;">
                 <th style="padding: 8px; border-bottom: 1px solid #ccc;">Reservation Code</th>
+                <th style="padding: 8px; border-bottom: 1px solid #ccc;">Parking</th>
                 <th style="padding: 8px; border-bottom: 1px solid #ccc;">Spot</th>
                 <th style="padding: 8px; border-bottom: 1px solid #ccc;">Date</th>
                 <th style="padding: 8px; border-bottom: 1px solid #ccc;">From</th>
@@ -13,16 +13,22 @@
             </tr>
         </thead>
         <tbody>       
-            @foreach (var reservation in Model)
+            @foreach (var reservation in Model.Reservations)
             {
                 <tr>
                    <td style="padding: 8px;">@reservation.Id</td>
-                   <td style="padding: 8px;">@reservation.Place</td>
+                   <td style="padding: 8px;">@reservation.Place.Parking.Name</td>
+                    <td style="padding: 8px;">@reservation.Place.Name</td>
                     <td style="padding: 8px;">@reservation.ReservationStart.ToString("yyyy-MM-dd")
                     <td style="padding: 8px;">@reservation.ReservationStart.ToString("HH:mm")</td>
                     <td style="padding: 8px;">@reservation.ReservationEnd.ToString("HH:mm")</td>
                     <td>
-                    <input type="hidden" name="reservationId" value="@reservation.Id" />
+                    <input type="hidden" name="ReservationId" value="@reservation.Id" />
+                    <input type="hidden" name="FirstName" value="@Model.FirstName" />
+                    <input type="hidden" name="LastName" value="@Model.LastName" />
+                    <input type="hidden" name="Email" value="@Model.Email" />
+                    <input type="hidden" name="Phone" value="@Model.Phone" />
+                    <input type="hidden" name="Photo" value="@Model.Base64Photo" />
                     <button type="submit" style="padding: 10px 16px; background-color: #007bff; color: white; border: none; border-radius: 4px;">
                         Confirm
                     </button>

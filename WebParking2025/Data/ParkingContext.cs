@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using WebParking2025.DbModels;
 using WebParking2025.Models;
 
 namespace WebParking2025.Data
@@ -19,6 +20,8 @@ namespace WebParking2025.Data
         public DbSet<IdentityRole> AspNetRoles {  get; set; }
 
         public DbSet<IdentityUserRole<string>> AspNetUserRoles {  get; set; }
-       
+
+        public DbSet<ReservationLogs> ReservationLogs { get; set; }
+        
     }
 }
