@@ -42,7 +42,8 @@ namespace WebParking2025.Controllers
                 var role = _context.Roles.Find(entry.RoleId);
                 userRoles.Add(user, role.Name);
             }
-          return View(userRoles);
+            Console.WriteLine("MAIN TEST!!!");
+            return View(userRoles);
            
         }
 
